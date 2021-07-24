@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salut BlogController!{% endblock %}
+
+{% block body %}
+    {% for artile in articles%}
+    <div class="article">
+        <h2>{{artile.title}}</h2>
+        <div class="metadata">
+            Ecrit le {{artile.createdAt | date("d/m/Y")}} a {{artile.createdAt | date("h:i")}} dans la category plitique
+        </div>
+        <div class="content">
+            <img src="{{artile.image}}" alt=""/>
+            <p> {{artile.content}}</p>
+            <a href="{{ path('blog_show',{'id':artile.id}) }}" class="btn btn-info">Lire La Suite</a>
+        </div>
+        <hr>
+    </div>
+    {% endfor%}
+{% endblock %}

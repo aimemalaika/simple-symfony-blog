@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% form_theme commentForm 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}    
+    <div class="article">
+        <h2>{{article.title}}</h2>
+        <div class="metadata">
+            Ecrit le {{article.createdAt | date("d/m/Y")}} a {{article.createdAt | date("h:i")}} dans la category <b>{{article.category.name}}</b>
+        </div>
+        <div class="content">
+            <img src="{{article.image}}" alt=""/>
+            <p> {{article.content | raw}}</p>
+        </div>
+
+        <div>
+            <div class="comment">
+                <h4> {{ article.comments | length }} Commentaire : </h4>
+                {% if app.user %}
+                {{form_start(commentForm)}}
+                    {{form_row(commentForm.author)}}
+                    {{form_row(commentForm.content)}}
+                {{form_end(commentForm)}}
+                <hr/>
+                {% else %}
+                    <a href="{{path("security_login")}}" class="btn btn-link">Login First</a>
+                {% endif %}
+                {% for comment in article.comments %}
+                    <div class="row border bg-white mt-3 mb-3 p-4">
+                        <div class="col-md-3">
+                            {{comment.author}} (<small>{{comment.createdAt | date('d-m-Y')}} {{comment.createdAt | date('h:i')}}</small>)
+                        </div>
+                        <div class="col-md-9">
+                            {{comment.content}}
+                        </div>
+                    </div>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    
+{% endblock %}
