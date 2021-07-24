@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+
+{% block body%}
+    <h2>Create Post</h2>
+    {{ form_start(formArticle)}}
+        {{form_row(formArticle.title,{
+            'attr':{
+                'placeholder': 'titre de l\'article'
+            }
+        })}}
+         {{form_row(formArticle.category)}}
+        {{form_row(formArticle.content,{
+            'attr':{
+                'placeholder': 'contenu de l\'article',
+                'rows': 10
+            }
+        })}}
+        {{form_row(formArticle.image,{
+            'attr':{
+                'placeholder': 'image de l\'article'
+            }
+        })}}
+    {{form_end(formArticle)}}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% form_theme registrationform 'bootstrap_4_layout.html.twig' %}
+
+
+{% block body %}
+    <h2>Create your Account Here</h2>
+    {{form_start(registrationform)}}
+        {{form_row(registrationform.username,{
+            'attr': {
+                'placeholder': "Enter Username"
+            }
+        })}}
+        {{form_row(registrationform.email,{
+            'attr': {
+                'placeholder': "Enter Email"
+            }
+        })}}
+        {{form_row(registrationform.password,{
+            'attr': {
+                'placeholder': "Enter Password"
+            }
+        })}}
+        {{form_row(registrationform.confirm_password,{
+            'attr': {
+                'placeholder': "Confirm Password"
+            }
+        })}}
+
+    {{form_end(registrationform)}}
+{% endblock %}
